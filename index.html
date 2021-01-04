@@ -1,0 +1,251 @@
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+      .scrolly{
+        height: 600px;
+        overflow: auto;
+      }
+      .no-pad-no-margin{
+        margin: 0;
+        padding: 0 !important;
+      }
+      .hide{
+        display: none;
+      }
+    </style>
+  <body class= "jumbotron no-pad-no-margin">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <a class="navbar-brand no-pad-no-margin" href="#"><img class = "no-pad-no-margin "src="https://i.ibb.co/Gp1xSkH/down2hanglogo.png" alt="down2hanglogo" border="0" height=42 width =85></a>
+        <div class="collapse navbar-collapse ml-3" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link " data-toggle="modal" data-target="#aboutModal">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/down2hang/down2hang.github.io">Source</a>
+            </li>
+          </ul>
+          <button class="btn btn-outline-primary my-2 my-sm-0" type="button" onclick="alertNotSupported()">Login</button>
+        </div>
+    </nav>
+    <div class=" pt-5 mt-3 row">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 scrolly border pt-2">
+        <!-- Event Display Buttons -->
+        <div id="eDisplayBtns" class="btn-block" role="group">
+        </div>
+        <!-- END Event Display Buttons -->
+
+        <br>
+
+        <!-- Button to trigger add event modal -->
+        <button type="button" class="btn btn-outline-primary btn-lg btn-block" data-toggle="modal" data-target="#exampleModal">
+          Add Event
+        </button>
+        <!-- END Button to trigger add event modal -->
+        <br>
+        <br>
+      </div>
+      <div id="rightCol" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 scrolly border pt-2">
+        <div id="eInfoSpace" class = "lead">
+          <h1 class = "display-4 text-center">Hover Over An Event Or Make A New One On The Left To Get Started!</h1>
+        </div>
+
+        <br>
+
+        <!-- Button to trigger join event modal -->
+        <button id="joinEventBtn" type="button" class="btn btn-outline-primary btn-lg btn-block hide" data-toggle="modal" data-target="#joinEventModal">
+          Join Event
+        </button>
+        <!-- END Button to trigger join event modal -->
+      </div>
+    </div>
+
+
+    <!-- New Event Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLabel">Start New Event!</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="newEventInfo" onsubmit="go()" style="text-align: center; position: relative">
+
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">First Name</span>
+                  </div>
+                  <input type="text" id="fname" class="form-control" name="firstname" placeholder="Your first name.." aria-label="Username" aria-describedby="basic-addon1" required>
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Last Name</span>
+                  </div>
+                  <input type="text" aria-label="Username" class="form-control" aria-describedby="basic-addon1" id="lname" name="lastname" placeholder="Your last name.." required>
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Email</span>
+                  </div>
+                  <input type="email" aria-label="Username" class="form-control" aria-describedby="basic-addon1" id="email" name="email" placeholder="stevejobs@gmail.com" required>
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Minimum Participants</span>
+                  </div>
+                  <input type="number" aria-label="Username" class="form-control" aria-describedby="basic-addon1" id="minipart" name="minipart" placeholder='0' required>
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Maximum Participants</span>
+                  </div>
+                  <input type="number" aria-label="Username" class="form-control" aria-describedby="basic-addon1" id="maxpart" name="maxpart" placeholder='100' required>
+                </div>
+
+
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Event Title</span>
+                  </div>
+                  <input type="text" id="ename" name="maxpart" placeholder='John Doe'class="form-control" aria-label="Username" aria-describedby="basic-addon1" required>
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Event Time</span>
+                  </div>
+                  <input type="time" aria-label="Username" class="form-control" aria-describedby="basic-addon1" id="etime" name="eventtime" placeholder="00:00:0000" required>
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Event Location</span>
+                  </div>
+                  <input type="text" aria-label="Username" class="form-control" aria-describedby="basic-addon1" id="elocation" name="eventlocation" placeholder="Buckingham Palace" required>
+                </div>
+
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Event Description</span>
+                  </div>
+                  <textarea class="form-control" aria-label="With textarea"name="edesc" placeholder="Write something.." id= "edesc" style="height:200px" required></textarea>
+                </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" type = "Submit" value="Submit" onclick="go()" class="btn btn-secondary" data-dismiss="modal">Create Event</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END New Event Modal -->
+
+    <!-- Join Event Modal -->
+    <div class="modal fade" id="joinEventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLabel">Join An Event!</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="joinEventForm" onsubmit="joinEvent()" style="text-align: center; position: relative">
+
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">First Name</span>
+                </div>
+                  <input type="text" id="fnameadd" class="form-control" name="firstname" placeholder="Your first name.." aria-label="Username" aria-describedby="basic-addon1" required>
+              </div>
+
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Last Name</span>
+                </div>
+                <input type="text" aria-label="Username" class="form-control" aria-describedby="basic-addon1" id="lnameadd" name="lastname" placeholder="Your last name.." required>
+              </div>
+
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Email</span>
+                </div>
+                <input type="email" aria-label="Username" class="form-control" aria-describedby="basic-addon1" id="emailadd" name="email" placeholder="stevejobs@gmail.com" required>
+              </div>
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button id="joinEventSubmission" type="submit" value="Submit" onclick="joinEvent()" class="btn btn-secondary" data-dismiss="modal">Join</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END Join Event Modal -->
+
+    <!-- About Modal -->
+    <div class="modal fade bd-example-modal-lg" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLabel">About</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h3 class = "text-center">What does it do?</h3>
+            <a>Down2Hang allows people to post and join events on our website and notifies people once the event has reached the specified minimum number of participants. No more showing up to frisbee practice and only finding 5 people there. Down2Hang keeps track of intended attendance and tells all participants when the minimum has been met, so people can confidently attend, knowing it's worth it. This is also a great way to find cool things to do and meet new people!</a>
+            <br>
+            <br>
+            <h3 class = "text-center">Why is this cool?</h3>
+            <a>We are a bunch of Amherst College ultimate frisbee players who also happen to love programming. We joined forces for the MLE New Year's Hackathon to solve a common problem amongst us. Getting enough people to come to frisbee practice can be a challenge. It's especially annoying when you need 14 players, for practice to be worthwhile. The pandemic made this even harder.<br><br>We hope that in the new year, after the pandemic, our website can be used to organize events for groups of people who want to (safely) coordinate fun activities. It's also a great way to make new friends in the new year.</a>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END About Modal -->
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+function apicall(d) {
+  fetch("https://hwzgmbb5mg.execute-api.us-east-1.amazonaws.com/test/check", {
+    method:"POST",
+    body: JSON.stringify({
+  "Description": d.Description,
+  "EventID": d.EventID,
+  "Location": d.Location,
+  "Participants": d.Participants,
+  "Time": d.Time,
+  "Title": d.Title,
+  "max": parseInt(d.max),
+  "min": parseInt(d.min)
+})
+  });
+}</script>
+<script src="js/script.js"></script>
+
+  </body>
+</html>
